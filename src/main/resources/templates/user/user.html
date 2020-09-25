@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index Usuarios</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <header>
+        <div class="headerbg">
+
+            <a th:href="@{/index}"><h3>WChallenge</h3></a>
+
+        </div>
+    </header>
+    <div class="divPrincipal">
+        <table border="1px">
+
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Website</th>
+                    <th>Street</th>
+                    <th>Suite</th>
+                    <th>City</th>
+                    <th>Zipcode</th>
+                    <th>Geo lat</th>
+                    <th>Geo long</th>
+                    <th>Company Name</th>
+                    <th>Company CatchPhrase</th>
+                    <th>Company bs</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td><span th:text="${user.id}"></span></td>
+                    <td><span th:text="${user.name}"></span></td>
+                    <td><span th:text="${user.username}"></span></td>
+                    <td><span th:text="${user.email}"></span></td>
+                    <td><span th:text="${user.phone}"></span></td>
+                    <td><span th:text="${user.website}"></span></td>
+                    <td><span th:text="${user.address.street}"></span></td>
+                    <td><span th:text="${user.address.suite}"></span></td>
+                    <td><span th:text="${user.address.city}"></span></td>
+                    <td><span th:text="${user.address.zipcode}"></span></td>
+                    <td><span th:text="${user.address.geo.lat}"></span></td>
+                    <td><span th:text="${user.address.geo.lng}"></span></td>
+                    <td><span th:text="${user.company.name}"></span></td>
+                    <td><span th:text="${user.company.catchPhrase}"></span></td>
+                    <td><span th:text="${user.company.bs}"></span></td>
+                    <td><a th:href="@{/user/{id}(id=${user.id})}">Ver</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br> 
+        <a class="btn btn-primary" th:href="@{/index}">Volver al menú principal</a>
+    </div>
+</body>
+</html>
