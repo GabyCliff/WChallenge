@@ -6,5 +6,7 @@ public class ViewRouteHelper {
 	public final static String ROUTE = "/index";
 	
 	public final static String USER_INDEX = "user/user";
+	
+	public final static String PHOTO_INDEX = "photo/photo";
 
 }
