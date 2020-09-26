@@ -8,5 +8,6 @@ public interface IAlbumService {
 	
 	public List<AlbumModel> getAll();
 	public List<AlbumModel> findByUser(long id);
+	public AlbumModel getAlbum(long id);
 
 }

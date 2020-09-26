@@ -8,31 +8,47 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wchallenge.helpers.ViewRouteHelper;
 import com.wchallenge.model.PhotoModel;
 import com.wchallenge.service.IPhotoService;
 
-@Controller
+@RestController
 @RequestMapping("/photos")
 public class PhotoController {
 	
 	@Autowired
 	private IPhotoService photoService;
 	
+//	@GetMapping("")
+//    public ModelAndView getPhotos(){
+//        ModelAndView mAV = new ModelAndView(ViewRouteHelper.PHOTO_INDEX);
+//        mAV.addObject("photos", photoService.getAll());
+//        return mAV;
+//    }
+	
 	@GetMapping("")
-    public ModelAndView getPhotos(){
-        ModelAndView mAV = new ModelAndView(ViewRouteHelper.PHOTO_INDEX);
-        mAV.addObject("photos", photoService.getAll());
-        return mAV;
+    public List<PhotoModel> getPhotos(){
+        return photoService.getAll();
     }
 	
 	@GetMapping("/{id}")
+    public PhotoModel getPhoto(@PathVariable("id") long id){
+        return photoService.getPhoto(id);
+    }
+	
+	@GetMapping("/album/{id}")
 	public List<PhotoModel> getPhotoByAlbum(@PathVariable("id") long id) {
 		List<PhotoModel> photos = new ArrayList<PhotoModel>();
 		photos = photoService.findByAlbum(id);
 		return photos;
+	}
+	
+	@GetMapping("/user/{id}")
+	public List<PhotoModel[]> getPhotoByUser(@PathVariable("id") long id) {
+		return photoService.getPhotosByUser(id);
 	}
 
 }

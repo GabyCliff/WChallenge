@@ -29,8 +29,13 @@ public class AlbumService implements IAlbumService{
 	@Override
 	public List<AlbumModel> findByUser(long id) {
 		List<AlbumModel> albums = this.getAll();
-        List<AlbumModel> result = albums.stream().filter(f -> f.getUserid()==id).collect(Collectors.toList());
+        List<AlbumModel> result = albums.stream().filter(f -> f.getUserId()==id).collect(Collectors.toList());
         return result;
+	}
+	
+	@Override
+	public AlbumModel getAlbum(long id) {
+		return restTemplate.getForObject(ApiHelper.ALBUMS + id, AlbumModel.class);
 	}
 
 }

@@ -22,24 +22,29 @@ public class AlbumController {
 	@Autowired
 	private IAlbumService albumService;
 	
-	@GetMapping("")
-    public ModelAndView getAlbums(){
-        ModelAndView mAV = new ModelAndView(ViewRouteHelper.ALBUM_INDEX);
-        mAV.addObject("albums", albumService.getAll());
-        return mAV;
-    }
-	
 //	@GetMapping("")
-//	public List<AlbumModel> getAlbums() {
-//		
-//		return albumService.getAll();
-//	}
+//    public ModelAndView getAlbums(){
+//        ModelAndView mAV = new ModelAndView(ViewRouteHelper.ALBUM_INDEX);
+//        mAV.addObject("albums", albumService.getAll());
+//        return mAV;
+//    }
 	
-	@GetMapping("/{id}")
+	@GetMapping("")
+	public List<AlbumModel> getAlbums() {
+		
+		return albumService.getAll();
+	}
+	
+	@GetMapping("user/{id}")
 	public List<AlbumModel> getAlbumByUser(@PathVariable("id") long id) {
 		List<AlbumModel> albums = new ArrayList<AlbumModel>();
 		albums = albumService.findByUser(id);
 		return albums;
+	}
+	
+	@GetMapping("/{id}")
+	public AlbumModel getAlbum(@PathVariable("id") long id) {
+		return albumService.getAlbum(id);
 	}
 
 }

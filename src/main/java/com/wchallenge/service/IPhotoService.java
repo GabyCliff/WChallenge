@@ -8,5 +8,7 @@ public interface IPhotoService {
 	
 	public List<PhotoModel> getAll();
 	public List<PhotoModel> findByAlbum(long id);
+	public PhotoModel getPhoto(long photoId);
+	public List<PhotoModel[]> getPhotosByUser(long userId);
 
 }
