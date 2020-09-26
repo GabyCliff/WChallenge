@@ -7,6 +7,6 @@ import com.wchallenge.model.PostModel;
 public interface IPostService {
 	
 	public List<PostModel> getAll();
-	public PostModel findByUser(long id);
+	public List<PostModel> findByUser(long id);
 
 }

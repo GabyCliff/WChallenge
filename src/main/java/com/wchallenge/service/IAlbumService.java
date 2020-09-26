@@ -7,6 +7,6 @@ import com.wchallenge.model.AlbumModel;
 public interface IAlbumService {
 	
 	public List<AlbumModel> getAll();
-	public AlbumModel findByUser(long id);
+	public List<AlbumModel> findByUser(long id);
 
 }

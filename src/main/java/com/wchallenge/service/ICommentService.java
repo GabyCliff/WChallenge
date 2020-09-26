@@ -7,6 +7,6 @@ import com.wchallenge.model.CommentModel;
 public interface ICommentService {
 	
 	public List<CommentModel> getAll();
-	public CommentModel findByPost(long id);
+	public List<CommentModel> findByPost(long id);
 
 }
