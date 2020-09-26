@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index Posts</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <header>
+        <div class="headerbg">
+
+            <a th:href="@{/index}"><h3>WChallenge</h3></a>
+
+        </div>
+    </header>
+    <div class="divPrincipal">
+    	<div class="col-12 text-center mt-5 mb-0">
+        	<h2>Posts</h2>
+    	</div>
+        <table border="1px">
+			<a class="btn btn-primary" th:href="@{/index}">Volver al menú principal</a>
+			<br>
+			<br>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>User Id</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="post : ${posts}">
+                    <td><span th:text="${post.id}"></span></td>
+                    <td><span th:text="${post.userId}"></span></td>
+                    <td><span th:text="${post.title}"></span></td>
+                    <td><span th:text="${post.body}"></span></td>
+                    <td><a th:href="@{/post/{id}(id=${post.id})}">Ver</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br> 
+    </div>
+</body>
+</html>
