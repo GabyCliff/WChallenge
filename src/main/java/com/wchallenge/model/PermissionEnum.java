@@ -11,7 +11,7 @@ public enum PermissionEnum {
 		this.id = id;
 	}
 	
-	public static PermissionEnum getId(long id) {
+	public static PermissionEnum getById(long id) {
 		for (PermissionEnum p : values()) {
 			if (p.id == id) {
 				return p;
