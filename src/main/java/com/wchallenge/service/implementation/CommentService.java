@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.wchallenge.helpers.ApiHelper;
 import com.wchallenge.model.CommentModel;
+import com.wchallenge.model.PostModel;
 import com.wchallenge.service.ICommentService;
 
 @Service
@@ -51,8 +53,14 @@ public class CommentService implements ICommentService{
 
 	@Override
 	public List<CommentModel[]> findByUser(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CommentModel[]> c = new ArrayList<CommentModel[]>();
+		ResponseEntity<PostModel[]> response = restTemplate.getForEntity(ApiHelper.POSTS + "?userId=" + id, PostModel[].class);
+		PostModel[] p = response.getBody();
+		for (PostModel post : p) {
+			 	ResponseEntity<CommentModel[]> responseComments = restTemplate.getForEntity(ApiHelper.COMMENTS + "?postId=" + post.getId(), CommentModel[].class);
+			 	c.add(responseComments.getBody());
+			}
+		return c;
 	}
 
 	@Override

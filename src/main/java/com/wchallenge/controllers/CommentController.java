@@ -30,10 +30,16 @@ public class CommentController {
 		return comments;
 	}
 	
-	@GetMapping("/filter/{name}")
-	public CommentModel getCommentsByUserName(@PathVariable("name") String name){
+	@GetMapping("/filterByName/{name}")
+	public CommentModel getCommentByName(@PathVariable("name") String name){
 		CommentModel comment = commentService.findByName(name);
 		return comment;
+	}
+	
+	@GetMapping("/filterByUser/{id}")
+	public List<CommentModel[]> getCommentsByUser(@PathVariable("id") long id){
+		List<CommentModel[]> comments = commentService.findByUser(id);
+		return comments;
 	}
 
 }

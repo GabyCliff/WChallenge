@@ -2,8 +2,6 @@ package com.wchallenge.service;
 
 import java.util.List;
 
-import com.wchallenge.model.AlbumModel;
-import com.wchallenge.model.PhotoModel;
 import com.wchallenge.model.UserModel;
 
 public interface IUserService {
