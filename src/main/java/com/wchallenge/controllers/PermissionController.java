@@ -57,6 +57,11 @@ public class PermissionController {
 		return users;
 	}
 	
+	@PostMapping("/manage")
+	public Permission managePermission(@RequestBody Permission newPermission) {
+		Permission p = permissionService.update(newPermission);
+		return p;
+	}
 	
 	
 
