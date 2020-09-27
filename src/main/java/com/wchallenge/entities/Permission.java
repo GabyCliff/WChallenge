@@ -1,28 +1,29 @@
 package com.wchallenge.entities;
 
-public enum Permission {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	READ(1), WRITE(2), READ_WRITE(3);
+import com.wchallenge.model.PermissionEnum;
 
+@Entity
+public class Permission {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	Permission(long id) {
-		
-		this.id = id;
-	}
-	
-	public static Permission getId(long id) {
-		for (Permission p : values()) {
-			if (p.id == id) {
-				return p;
-			}
-		}
-		return null;
-		
-		
-	}
-	
-	
-	
+	@Column(name = "user_id")
+	private long userId;
 
+	@Enumerated(EnumType.STRING)
+	private PermissionEnum permission;
+	
+	@Column(name = "album_id")
+	private long albumId;
+	
 }
