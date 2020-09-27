@@ -3,11 +3,13 @@ package com.wchallenge.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.wchallenge.entities.Permission;
 import com.wchallenge.repositories.IPermissionRepository;
 import com.wchallenge.service.IPermissionService;
 
+@Service
 public class PermissionService implements IPermissionService{
 	
 	@Autowired
