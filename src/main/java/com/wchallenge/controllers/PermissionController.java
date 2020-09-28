@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,25 +30,32 @@ public class PermissionController {
 	private IUserService userService;
 	
 	@PostMapping("/addSharedAlbum")
-	public Permission addSharedAlbum(@RequestBody Permission permission) {
-		
-		Permission p = permissionService.insert(permission);
-		return p;
+	public ResponseEntity<Permission> addSharedAlbum(@RequestBody Permission permission) {
+		Permission p = new Permission();
+		if(permissionService.isValidToCreate(permission)) {
+			p = permissionService.insert(permission);
+			return new ResponseEntity<Permission>(p, HttpStatus.CREATED);
+		}
+		else {
+			return new ResponseEntity<Permission>(p, HttpStatus.CONFLICT);
+		}
 		
 	}
 	
 	@GetMapping("")
-	public List<Permission> getPermissions(){
-		return permissionService.getAll();
+	public ResponseEntity<List<Permission>> getPermissions(){
+		List<Permission> permissions = permissionService.getAll();
+		return new ResponseEntity<List<Permission>>(permissions, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public Permission getPermission(@PathVariable("id") long id) {
-		return permissionService.findById(id);
+	public ResponseEntity<Permission> getPermission(@PathVariable("id") long id) {
+		Permission permission = permissionService.findById(id);
+		return new ResponseEntity<Permission>(permission, HttpStatus.OK);
 	}
 	
 	@GetMapping("/getUserPermission/{albumId}/{permissionType}")
-	public List<UserModel> getUserPermission(@PathVariable("albumId") long albumId, @PathVariable("permissionType") int permissionType){
+	public ResponseEntity<List<UserModel>> getUserPermission(@PathVariable("albumId") long albumId, @PathVariable("permissionType") int permissionType){
 		List<UserModel> users = new ArrayList<UserModel>();
 		List<Permission> perm = permissionService.getAll();
 		for(Permission p : perm) {
@@ -54,13 +63,19 @@ public class PermissionController {
 				users.add(userService.findById(p.getUserId()));
 			}
 		}
-		return users;
+		return new ResponseEntity<List<UserModel>>(users, HttpStatus.OK);
 	}
 	
 	@PostMapping("/manage")
-	public Permission managePermission(@RequestBody Permission newPermission) {
-		Permission p = permissionService.update(newPermission);
-		return p;
+	public ResponseEntity<Permission> managePermission(@RequestBody Permission newPermission) {
+		Permission p = new Permission();
+		if(permissionService.isValidToUptade(newPermission)) {
+			p = permissionService.update(newPermission);
+			return new ResponseEntity<Permission>(p, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<Permission>(p, HttpStatus.CONFLICT);
+		}
 	}
 	
 	

@@ -1,9 +1,10 @@
 package com.wchallenge.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,27 +20,27 @@ public class CommentController {
 	private ICommentService commentService;
 	
 	@GetMapping("")
-    public List<CommentModel> getComments(){
-        return commentService.getAll();
+    public ResponseEntity<List<CommentModel>> getComments(){
+		List<CommentModel> comments = commentService.getAll();
+		return new ResponseEntity<List<CommentModel>>(comments, HttpStatus.OK);
     }
 	
 	@GetMapping("/post/{id}")
-	public List<CommentModel> getCommentByPost(@PathVariable("id") long id) {
-		List<CommentModel> comments = new ArrayList<CommentModel>();
-		comments = commentService.findByPost(id);
-		return comments;
+	public ResponseEntity<List<CommentModel>> getCommentByPost(@PathVariable("id") long id) {
+		List<CommentModel> comments = commentService.findByPost(id);
+		return new ResponseEntity<List<CommentModel>>(comments, HttpStatus.OK);
 	}
 	
 	@GetMapping("/filterByName/{name}")
-	public CommentModel getCommentByName(@PathVariable("name") String name){
+	public ResponseEntity<CommentModel> getCommentByName(@PathVariable("name") String name){
 		CommentModel comment = commentService.findByName(name);
-		return comment;
+		return new ResponseEntity<CommentModel>(comment, HttpStatus.OK);
 	}
 	
 	@GetMapping("/filterByUser/{id}")
-	public List<CommentModel[]> getCommentsByUser(@PathVariable("id") long id){
+	public ResponseEntity<List<CommentModel[]>> getCommentsByUser(@PathVariable("id") long id){
 		List<CommentModel[]> comments = commentService.findByUser(id);
-		return comments;
+		return new ResponseEntity<List<CommentModel[]>>(comments, HttpStatus.OK);
 	}
 
 }

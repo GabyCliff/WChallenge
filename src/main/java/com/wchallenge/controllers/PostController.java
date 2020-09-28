@@ -1,9 +1,10 @@
 package com.wchallenge.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,15 +20,15 @@ public class PostController {
 	private IPostService postService;
 	
 	@GetMapping("")
-    public List<PostModel> getPosts(){
-        return postService.getAll();
+    public ResponseEntity<List<PostModel>> getPosts(){
+		List<PostModel> posts = postService.getAll();
+        return new ResponseEntity<List<PostModel>>(posts, HttpStatus.OK);
     }
 	
-	@GetMapping("/{id}")
-	public List<PostModel> getPostByUser(@PathVariable("id") long id) {
-		List<PostModel> posts = new ArrayList<PostModel>();
-		posts = postService.findByUser(id);
-		return posts;
+	@GetMapping("/user/{id}")
+	public ResponseEntity<List<PostModel>> getPostByUser(@PathVariable("id") long id) {
+		List<PostModel> posts = postService.findByUser(id);
+        return new ResponseEntity<List<PostModel>>(posts, HttpStatus.OK);
 	}
 
 }
