@@ -109,6 +109,12 @@ public class AddressModel {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "AddressModel [street=" + street + ", suite=" + suite + ", city=" + city + ", zipcode=" + zipcode
+				+ ", geo=" + geo + "]";
+	}
 	
 	
 

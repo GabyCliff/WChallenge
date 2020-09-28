@@ -61,6 +61,11 @@ public class GeoModel {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "GeoModel [lat=" + lat + ", lng=" + lng + "]";
+	}
 	
 	
 
