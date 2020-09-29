@@ -10,7 +10,11 @@ import javax.persistence.Id;
 
 import com.wchallenge.model.PermissionEnum;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description = "User permissions for shared albums")
 public class Permission {
 	
 	@Id
@@ -18,21 +22,23 @@ public class Permission {
 	private long id;
 	
 	@Column
+	@ApiModelProperty(notes = "The id user of the permission")
 	private long userId;
 
 	@Enumerated(EnumType.STRING)
+	@ApiModelProperty(notes = "The permission type")
 	private PermissionEnum permission;
 	
 	@Column
+	@ApiModelProperty(notes = "The id of the shared album")
 	private long albumId;
 	
 	public Permission() {
 		
 	}
 
-	public Permission(long id, long userId, PermissionEnum permission, long albumId) {
+	public Permission(long userId, PermissionEnum permission, long albumId) {
 		super();
-		this.id = id;
 		this.userId = userId;
 		this.permission = permission;
 		this.albumId = albumId;

@@ -1,9 +1,17 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Albumss from JSONPlaceholder Online REST API")
 public class AlbumModel {
 	
 	private long id;
+	
+	@ApiModelProperty(notes = "The id of the album owner")
 	private long userId;
+	
+	@ApiModelProperty(notes = "The title of the album")
 	private String title;
 	
 	public AlbumModel() {
@@ -39,6 +47,42 @@ public class AlbumModel {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + (int) (userId ^ (userId >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AlbumModel other = (AlbumModel) obj;
+		if (id != other.id)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (userId != other.userId)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "AlbumModel [id=" + id + ", userId=" + userId + ", title=" + title + "]";
 	}
 	
 	

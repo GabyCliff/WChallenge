@@ -11,5 +11,8 @@ public interface IPermissionService {
 	public Permission insert(Permission permission);
 	public Permission update(Permission permission);
 	public boolean remove(long id);	
+	public boolean exist(long id);
+	public boolean isValidToCreate(Permission permission);
+	public boolean isValidToUptade(Permission permission);
 
 }

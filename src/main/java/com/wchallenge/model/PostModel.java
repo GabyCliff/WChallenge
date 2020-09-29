@@ -1,10 +1,20 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Posts from JSONPlaceholder Online REST API")
 public class PostModel {
 	
+	@ApiModelProperty(notes = "The post user id")
 	private long userId;
+	
 	private long id;
+	
+	@ApiModelProperty(notes = "The title of a post")
 	private String title;
+	
+	@ApiModelProperty(notes = "The body of a post")
 	private String body;
 	
 	public PostModel () {

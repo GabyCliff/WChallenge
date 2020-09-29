@@ -1,8 +1,15 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Geographic location of a User from JSONPlaceholder Online REST API")
 public class GeoModel {
 	
+	@ApiModelProperty("The latitude of the geographic location")
 	private String lat;
+	
+	@ApiModelProperty("The longitude of the geographic location")
 	private String lng;
 	
 	public GeoModel () {
@@ -60,6 +67,11 @@ public class GeoModel {
 		} else if (!lng.equals(other.lng))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "GeoModel [lat=" + lat + ", lng=" + lng + "]";
 	}
 	
 	
