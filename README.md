@@ -8,6 +8,8 @@ El motor de bases de datos elegido para llevar a cabo la persistencia de datos e
 
 Se puede consultar la Swagger API documentation accediendo a http://localhost:9090/swagger-ui.html , en la cual se podrá visualizar en detalle el funcionamiento de los endpoints a los que se puede acceder.
 
+(*NOTA*: Para ejecutar los Unit Test se debe añadir al build path del proyecto, la libreria JUnit 4)
+
 ### ENDPOINTS
 
 ```
