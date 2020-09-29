@@ -1,11 +1,22 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Comments from JSONPlaceholder Online REST API")
 public class CommentModel {
 	
+	@ApiModelProperty(notes = "The id of the post that contains it")
 	private long postId;
 	private long id;
+	
+	@ApiModelProperty(notes = "The name of the comment")
 	private String name;
+	
+	@ApiModelProperty(notes = "The email of the comment")
 	private String email;
+	
+	@ApiModelProperty(notes = "The body of the comment")
 	private String body;
 	
 	public CommentModel () {

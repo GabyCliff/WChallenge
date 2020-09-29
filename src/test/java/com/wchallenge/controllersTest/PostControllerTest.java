@@ -1,4 +1,4 @@
-package com.wchallenge.controllers;
+package com.wchallenge.controllersTest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
@@ -19,50 +19,50 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.wchallenge.model.UserModel;
-import com.wchallenge.service.IUserService;
+import com.wchallenge.controllers.PostController;
+import com.wchallenge.model.PostModel;
+import com.wchallenge.service.IPostService;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
-public class UserControllerTest {
+@WebMvcTest(PostController.class)
+public class PostControllerTest {
 	
 	@Autowired
 	private MockMvc mvc;
 	
 	@MockBean
-	private IUserService service;
+	private IPostService service;
 	
 	@Test
-	public void givenUsers_whenGetUsers_thenReturnJsonArray() throws Exception{
+	public void givenPosts_whenGetPosts_thenReturnJsonArray() throws Exception{
 		
-		UserModel user = new UserModel();
-		user.setName("UserTest");
+		PostModel post = new PostModel(1, 1, "PhotoTest", "");
 		
-		List<UserModel> users = Arrays.asList(user);
+		List<PostModel> posts = Arrays.asList(post);
 		
-		when(service.getAll()).thenReturn(users);
+		when(service.getAll()).thenReturn(posts);
 		
-		mvc.perform(get("/users")
+		mvc.perform(get("/posts")
 			      .contentType(MediaType.APPLICATION_JSON))
 			      .andExpect(status().isOk())
-			      .andExpect(jsonPath("$[0].name", is(user.getName())));
+			      .andExpect(jsonPath("$[0].title", is(post.getTitle())));
 			
 	}
 	
 	@Test
-	public void givenUser_whenGetUser_thenReturnJsonArray() throws Exception{
+	public void givenPostsByUser_whenGetPostsByUser_thenReturnJsonArray() throws Exception{
 		
-		UserModel user = new UserModel();
-	
-		user.setName("UserTest");
+		PostModel post = new PostModel(1, 1, "PhotoTest", "");
 		
-		when(service.findById(1)).thenReturn(user);
+		List<PostModel> posts = Arrays.asList(post);
 		
-		mvc.perform(get("/users/1")
+		when(service.findByUser(1)).thenReturn(posts);
+		
+		mvc.perform(get("/posts/user/1")
 			      .contentType(MediaType.APPLICATION_JSON))
 			      .andExpect(status().isOk())
-			      .andExpect(jsonPath("$.name", is(user.getName())));
+			      .andExpect(jsonPath("$[0].title", is(post.getTitle())));
 			
 	}
 

@@ -1,11 +1,23 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Photos from JSONPlaceholder Online REST API")
 public class PhotoModel {
 	
 	private long id;
+	
+	@ApiModelProperty(notes = "The id of the album that contains it")
     private long albumId;
+	
+	@ApiModelProperty(notes = "The title of the photo")
     private String title;
+	
+	@ApiModelProperty(notes = "The url of the photo")
     private String url;
+	
+	@ApiModelProperty(notes = "The thumbnail url of the photo")
     private String thumbnailUrl;
     
     public PhotoModel () {

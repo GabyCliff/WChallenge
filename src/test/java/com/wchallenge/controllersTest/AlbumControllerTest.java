@@ -1,4 +1,4 @@
-package com.wchallenge.controllers;
+package com.wchallenge.controllersTest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
@@ -19,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.wchallenge.controllers.AlbumController;
 import com.wchallenge.model.AlbumModel;
 import com.wchallenge.service.IAlbumService;
 

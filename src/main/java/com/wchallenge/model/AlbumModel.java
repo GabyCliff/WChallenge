@@ -1,9 +1,17 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Albumss from JSONPlaceholder Online REST API")
 public class AlbumModel {
 	
 	private long id;
+	
+	@ApiModelProperty(notes = "The id of the album owner")
 	private long userId;
+	
+	@ApiModelProperty(notes = "The title of the album")
 	private String title;
 	
 	public AlbumModel() {

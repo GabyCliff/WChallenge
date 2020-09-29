@@ -1,8 +1,15 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Company of a User from JSONPlaceholder Online REST API")
 public class CompanyModel {
 	
+	@ApiModelProperty(notes = "The name of the Companny")
 	private String name;
+	
+	@ApiModelProperty(notes = "The catchphrase of the Company")
 	private String catchPhrase;
 	private String bs;
 	

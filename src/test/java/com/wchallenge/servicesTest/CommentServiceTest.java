@@ -1,4 +1,4 @@
-package com.wchallenge.services;
+package com.wchallenge.servicesTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,14 +21,14 @@ public class CommentServiceTest {
 	private ICommentService commentService;
 	
 	@Test
-	public void getAllComments() {
+	public void testGetAllComments() {
 		List<CommentModel> comments = commentService.getAll();
 
 		assertThat(comments).isNotEmpty().isNotNull();
 	}
 	
 	@Test
-	public void getComment() {
+	public void testGetComment() {
 		CommentModel comment = commentService.findByName("id labore ex et quam laborum");
 		CommentModel expectedComment = new CommentModel(1, 1, "id labore ex et quam laborum", "Eliseo@gardner.biz", "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium");
 		

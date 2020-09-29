@@ -1,14 +1,32 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Users from JSONPlaceholder Online REST API")
 public class UserModel {
 	
 	private long id;
+	
+	@ApiModelProperty(notes = "The name of a user")
 	private String name;
+	
+	@ApiModelProperty(notes = "The username of a user")
 	private String username;
+	
+	@ApiModelProperty(notes = "The email of a user")
 	private String email;
+	
+	@ApiModelProperty(notes = "The address of a user")
 	private AddressModel address;
+	
+	@ApiModelProperty(notes = "The phone number of a user")
 	private String phone;
+	
+	@ApiModelProperty(notes = "The website of a user")
 	private String website;
+	
+	@ApiModelProperty(notes = "The company of a user")
 	private CompanyModel company;
 	
 	public UserModel () {

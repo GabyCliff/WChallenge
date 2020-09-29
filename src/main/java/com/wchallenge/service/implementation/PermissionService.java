@@ -9,7 +9,7 @@ import com.wchallenge.entities.Permission;
 import com.wchallenge.repositories.IPermissionRepository;
 import com.wchallenge.service.IPermissionService;
 
-@Service
+@Service("permissionService")
 public class PermissionService implements IPermissionService{
 	
 	@Autowired

@@ -1,4 +1,4 @@
-package com.wchallenge.services;
+package com.wchallenge.servicesTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;

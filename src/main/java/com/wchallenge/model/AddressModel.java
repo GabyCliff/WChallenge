@@ -1,11 +1,24 @@
 package com.wchallenge.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Address of a User from JSONPlaceholder Online REST API")
 public class AddressModel {
 	
+	@ApiModelProperty(notes = "The street of a user's address")
 	private String street;
+	
+	@ApiModelProperty(notes = "The suite of a user's address")
 	private String suite;
+	
+	@ApiModelProperty(notes = "The city of a user's address")
 	private String city;
+	
+	@ApiModelProperty(notes = "The zipcode of a user's address")
 	private String zipcode;
+	
+	@ApiModelProperty(notes = "The geographic location of a user")
 	private GeoModel geo;
 	
 	public AddressModel () {
